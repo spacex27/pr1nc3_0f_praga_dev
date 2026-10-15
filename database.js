@@ -8,11 +8,6 @@ async function main() {
     } else {
         console.log('Brak aktywnego połączenia. Aktualny status:', mongoose.connection.readyState);
     }
-
-    mongoose.connection.db
-    .listCollections()
-    .toArray()
-    .then(coll => console.log({ coll }));
 }
 
 main().catch(err => console.log(err));
