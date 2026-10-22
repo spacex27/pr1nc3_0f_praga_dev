@@ -49,7 +49,7 @@ router.post("/gracze", async (req, res) => {
 
 router.delete("/gracze/:id", async (req, res) => {
     try{
-        const graczSzukany = gracz.findByIdAndDelete(req.params.id);
+        const graczSzukany = await gracz.findByIdAndDelete(req.params.id);
 
         if(!graczSzukany){
             return res.status(404).json("Gracz nie istnieje!");
@@ -72,7 +72,7 @@ router.patch("/gracze/:id", async (req, res) => {
             iloscZyc: iloscZyc
         };
 
-        const graczSzukany = gracz.findByIdAndUpdate(req.params.id, updatedData);
+        const graczSzukany = await gracz.findByIdAndUpdate(req.params.id, updatedData);
 
         if(!graczSzukany){
             return res.status(404).json("Gracz nie istnieje!");
