@@ -30,6 +30,12 @@ router.get("/gracze/:id", async (req, res) => {
 
 router.post("/gracze", async (req, res) => {
     try{
+        const graczSzukany = await gracz.findOne({nick: req.body.nick});
+
+        if(graczSzukany != null){
+            return res.status(401).json({ message: "Nick już istnieje!"});;
+        }
+
         const { nick, czas, iloscZyc } = req.body;
 
         const newData = new gracz({
